@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
+
   @override
   Widget build(BuildContext context) {
     final pages = List.generate(
@@ -28,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           child: Center(
             child: Text(
               "Page $index",
-              style: TextStyle(color: Colors.indigo),
+              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
           ),
         ),
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Categories',
+                      'Featured',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: MediaQuery.of(context).size.width * 0.06,
@@ -167,83 +168,232 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 16, right: 16, top: 16),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Color(0xFF292727),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildCategoryCard(
+                          'assets/image1.png', 'Sport Brand', '₹2499', 1),
+                      _buildCategoryCard(
+                          'assets/image2.jpg', 'Sport Brand', '₹2499', 1),
+                      _buildCategoryCard(
+                          'assets/image3.jpg', 'Sport Brand', '₹2499', 1),
+                      SizedBox(
+                        width: 16,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.home,
-                            color: Colors.white,
-                            size: MediaQuery.of(context).size.width * 0.1,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
-                          ),
-                          Text(
-                            'Home',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize:
-                                  MediaQuery.of(context).size.width * 0.05,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ALL',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: MediaQuery.of(context).size.width * 0.06,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              _ProductList()
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryCard(
+      String imgPath, String brand, String price, int index) {
+    return Padding(
+      padding: EdgeInsets.only(left: 16),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.25,
+        width: MediaQuery.of(context).size.width * 0.42,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: primaryColor,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.165,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25),
+                color: Bg,
+                image: DecorationImage(
+                    image: AssetImage(imgPath), fit: BoxFit.fill),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 8),
+              child: Text(
+                brand,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width * 0.03,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    price,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.favorite_border_outlined,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  // A list of all products
+  Widget _ProductList() {
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+      ),
+      child: Column(
+        children: [
+          _buildProductCard('assets/image1.png', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image2.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image3.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image1.png', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image2.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image3.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image1.png', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image2.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+          _buildProductCard('assets/image3.jpg', 'Sport Brand',
+              'Snopy SN-BT96 pPretty Back Bluetooth Headphone', '₹2499', 1),
+        ],
+      ),
+    );
+  }
+
+  _buildProductCard(String s, String t, String u, String v, int i) {
+    return Padding(
+      padding: EdgeInsets.only(top: 16),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.15,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: primaryColor,
+        ),
+        child: Row(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.25,
+              width: MediaQuery.of(context).size.width * 0.3,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25),
+                  bottomLeft: Radius.circular(25),
+                ),
+                color: Bg,
+                image: DecorationImage(image: AssetImage(s), fit: BoxFit.fill),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    t,
+                    style: TextStyle(
+                      color: textLight1,
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Text(
+                      u,
+                      style: TextStyle(
+                        color: textLight2,
+                        fontSize: MediaQuery.of(context).size.width * 0.032,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 16,
-                    ),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Color(0xFF292727),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.home,
-                            color: Colors.white,
-                            size: MediaQuery.of(context).size.width * 0.1,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
-                          ),
-                          Text(
-                            'Home',
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.52,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(
+                            v,
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                               fontSize:
                                   MediaQuery.of(context).size.width * 0.05,
-                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Icon(
+                          Icons.favorite_border_outlined,
+                          color: Colors.white,
+                        )
+                      ],
                     ),
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

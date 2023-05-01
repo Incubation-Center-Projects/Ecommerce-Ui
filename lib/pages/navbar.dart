@@ -62,32 +62,39 @@ class _NavBarState extends State<NavBar> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: (bottomBarPages.length <= maxCount)
-          ? AnimatedBottomNavigationBar(
-              leftCornerRadius: 25,
-              backgroundColor: primaryColor,
-              rightCornerRadius: 25,
-              icons: iconList,
-              activeIndex: _bottomNavIndex,
-              gapLocation: GapLocation.center,
-              notchSmoothness: NotchSmoothness.softEdge,
-              splashColor: Button,
-              inactiveColor: Colors.white,
-              activeColor: Button,
-              onTap: (index) {
-                /// control your animation using page controller
-                setState(
-                  () {
-                    _bottomNavIndex = index;
-                  },
-                );
-                _pageController.animateToPage(
-                  index,
-                  duration: const Duration(
-                    milliseconds: 300,
-                  ),
-                  curve: Curves.easeIn,
-                );
-              },
+          ? Container(
+              color: Colors.transparent,
+              child: AnimatedBottomNavigationBar(
+                leftCornerRadius: 25,
+                backgroundColor: primaryColor,
+                rightCornerRadius: 25,
+                icons: iconList,
+                activeIndex: _bottomNavIndex,
+                gapLocation: GapLocation.center,
+                notchSmoothness: NotchSmoothness.softEdge,
+                splashColor: Button,
+                inactiveColor: Colors.white,
+                shadow: BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 10,
+                ),
+                activeColor: Button,
+                onTap: (index) {
+                  /// control your animation using page controller
+                  setState(
+                    () {
+                      _bottomNavIndex = index;
+                    },
+                  );
+                  _pageController.animateToPage(
+                    index,
+                    duration: const Duration(
+                      milliseconds: 300,
+                    ),
+                    curve: Curves.easeIn,
+                  );
+                },
+              ),
             )
           : null,
     );

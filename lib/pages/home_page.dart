@@ -393,11 +393,15 @@ class _CardSliderState extends State<CardSlider> {
   @override
   void initState() {
     super.initState();
-    _pageController.addListener(() {
-      setState(() {
-        _currentPage = _pageController.page!.round();
-      });
-    });
+    _pageController.addListener(
+      () {
+        setState(
+          () {
+            _currentPage = _pageController.page!.round();
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -405,62 +409,63 @@ class _CardSliderState extends State<CardSlider> {
     return Column(
       children: [
         SizedBox(
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width * 0.95,
-            child: PageView.builder(
-              itemCount: 4,
-              controller: _pageController,
-              itemBuilder: (BuildContext context, int pos) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  color: Color(0xFFADED5C),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Text(
-                                  "55%",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+          height: MediaQuery.of(context).size.height * 0.2,
+          width: MediaQuery.of(context).size.width * 0.95,
+          child: PageView.builder(
+            itemCount: 4,
+            controller: _pageController,
+            itemBuilder: (BuildContext context, int pos) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                color: Color(0xFFADED5C),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                "55%",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Text(
-                                  "Discount",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ),
+                              Text(
+                                "Discount",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                Text(
-                                  "Wireless Noise",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                              ),
+                              Text(
+                                "Wireless Noise",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                );
-              },
-            )),
+                ),
+              );
+            },
+          ),
+        ),
         Positioned(
           top: MediaQuery.of(context).size.height * 0.2,
           left: MediaQuery.of(context).size.width * 0.38,

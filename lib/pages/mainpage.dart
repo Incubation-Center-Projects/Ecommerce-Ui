@@ -1,8 +1,6 @@
 import 'package:ecommerceui/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../decoration.dart';
-
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -48,7 +46,7 @@ class _MainPageState extends State<MainPage> {
                               style: TextStyle(color: Colors.grey),
                             ),
                             SizedBox(
-                              width: 100,
+                              width: MediaQuery.of(context).size.width * 0.35,
                             ),
                             IconButton(
                               onPressed: () {},

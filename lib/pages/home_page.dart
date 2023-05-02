@@ -19,10 +19,11 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Bg,
       body: SafeArea(
         child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 16,
+                height: MediaQuery.of(context).size.height * 0.01,
               ),
               Padding(
                 padding: const EdgeInsets.only(
@@ -53,14 +54,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.indigo,
-                      ),
-                    ),
+                    _cartIcon(),
                   ],
                 ),
               ),
@@ -88,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(color: Colors.grey),
                     ),
                     SizedBox(
-                      width: 100,
+                      width: MediaQuery.of(context).size.width * 0.5,
                     ),
                     IconButton(
                       onPressed: () {},
@@ -101,30 +95,6 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
               ),
-              // SizedBox(
-              //   height: MediaQuery.of(context).size.height * 0.2,
-              //   width: MediaQuery.of(context).size.width,
-              //   child: PageView.builder(
-              //     controller: controller,
-              //     itemCount: pages.length,
-              //     itemBuilder: (_, index) {
-              //       return pages[index % pages.length];
-              //     },
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 16,
-              // ),
-              // SmoothPageIndicator(
-              //   controller: controller,
-              //   count: pages.length,
-              //   effect: WormEffect(
-              //     dotHeight: 12,
-              //     dotWidth: 12,
-              //     activeDotColor: Color(0xFFFFCB11),
-              //     dotColor: Color.fromARGB(255, 255, 255, 255),
-              //   ),
-              // ),
               CardSlider(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.02,
@@ -203,7 +173,7 @@ class _HomePageState extends State<HomePage> {
     return Padding(
       padding: EdgeInsets.only(left: 16),
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.25,
+        height: MediaQuery.of(context).size.height * 0.26,
         width: MediaQuery.of(context).size.width * 0.42,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25),
@@ -211,6 +181,7 @@ class _HomePageState extends State<HomePage> {
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.165,
@@ -233,7 +204,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -246,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   SizedBox(
-                    width: 5,
+                    width: MediaQuery.of(context).size.width * 0.09,
                   ),
                   Icon(
                     Icons.favorite_border_outlined,
@@ -378,6 +349,51 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _cartIcon() {
+    return Stack(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.065,
+            width: MediaQuery.of(context).size.width * 0.135,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: primaryColor,
+            ),
+            child: Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.white,
+              size: MediaQuery.of(context).size.width * 0.06,
+            ),
+          ),
+        ),
+        Positioned(
+          right: MediaQuery.of(context).size.width * 0.03,
+          top: 0,
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.022,
+            width: MediaQuery.of(context).size.width * 0.045,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: Colors.red,
+            ),
+            child: Center(
+              child: Text(
+                '2',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: MediaQuery.of(context).size.width * 0.02,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class CardSlider extends StatefulWidget {
@@ -466,10 +482,12 @@ class _CardSliderState extends State<CardSlider> {
             },
           ),
         ),
-        Positioned(
-          top: MediaQuery.of(context).size.height * 0.2,
-          left: MediaQuery.of(context).size.width * 0.38,
-          right: 0,
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.01,
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.01,
+          width: MediaQuery.of(context).size.width * 0.15,
           child: SmoothPageIndicator(
             controller: _pageController,
             count: 4,

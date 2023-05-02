@@ -1,6 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:ecommerceui/constants/colors.dart';
+import 'package:ecommerceui/pages/favorite.dart';
 import 'package:ecommerceui/pages/mainpage.dart';
+import 'package:ecommerceui/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -18,8 +20,10 @@ class _NavBarState extends State<NavBar> {
 
   /// widget list
   final List<Widget> bottomBarPages = [
-    HomePage(),
-    MainPage(),
+    const HomePage(),
+    const MainPage(),
+    const FavoritePage(),
+    const ProfilePage(),
   ];
   int maxCount = 5;
   @override
@@ -57,7 +61,9 @@ class _NavBarState extends State<NavBar> {
           Icons.document_scanner_outlined,
           color: Color.fromARGB(255, 0, 0, 0),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'scan');
+        },
         //params
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
